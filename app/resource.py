@@ -11,6 +11,9 @@
 """
 from flask_restful import Api
 from app.api.management.user import User, Users
+from app.api.management.role import Role, Roles
 api = Api()
 api.add_resource(User, '/api/user/<int:id>')
 api.add_resource(Users, '/api/users/')
+api.add_resource(Role, '/api/role/<int:id>')
+api.add_resource(Roles, '/api/roles/')
