@@ -1,23 +1,29 @@
 # -*- coding: utf-8 -*-
 """
+-----------------------------------------------
 @version 3.7
-@time 2020/9/10 10:16
+@time 2021/3/25 18:16
 @author passion.wangd
 @title
-@file main.py
+@file __init__.py
+@IDE PyCharm
+-----------------------------------------------
 """
 import logging
 import logging.config
 import yaml
 import subprocess
 from flask import Flask
-from flask_restful import reqparse, abort, Api, Resource
+
+from app.resource import api
+
 
 def create_app(config_name=None, config_path=None):
     app = Flask(__name__,
-        template_folder=subprocess.os.path.join(subprocess.os.getcwd(), '\\template\\'),
-        static_folder=subprocess.os.path.join(subprocess.os.getcwd(), '\\static\\'),
-    )
+                template_folder=subprocess.os.path.join(subprocess.os.getcwd(), '\\template\\'),
+                static_folder=subprocess.os.path.join(subprocess.os.getcwd(), '\\static\\'),
+                )
+    api.init_app(app)
     # 读取配置文件
     if not config_path:
         config_path = subprocess.os.path.join(subprocess.os.getcwd(), 'config\\config.yaml')
@@ -32,7 +38,7 @@ def create_app(config_name=None, config_path=None):
     with open(app.config['LOGGING_CONFIG_PATH'], 'r', encoding='utf-8') as f:
         dict_conf = yaml.safe_load(f.read())
     logging.config.dictConfig(dict_conf)  # 载入日志配置
-    return app
+    return app, api
 
 
 def read_yaml(config_name, config_path):
@@ -49,15 +55,3 @@ def read_yaml(config_name, config_path):
             raise KeyError('未找到对应的配置信息')
     else:
         raise ValueError('请输入正确的配置名称或配置文件路径')
-
-app = create_app(config_name='DEVELOPMENT')
-api = Api(app)
-
-@app.route('/', methods=['GET', 'POST'], endpoint='index')
-def index():
-    app.logger.info('successfully')
-    return 'successfully'
-
-if __name__ == '__main__':
-    app = create_app(config_name='DEVELOPMENT')
-    api = Api(app)

@@ -2,12 +2,13 @@
 """
 -----------------------------------------------
 @version 3.7
-@time 2021/3/25 15:33
+@time 2021/3/25 17:54
 @author passion.wangd
 @title
-@file resource.py
+@file db.py
 @IDE PyCharm
 -----------------------------------------------
 """
-from flask_restful import Api
 
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
