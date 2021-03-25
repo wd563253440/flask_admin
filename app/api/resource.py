@@ -2,15 +2,12 @@
 """
 -----------------------------------------------
 @version 3.7
-@time 2021/3/12 17:43
+@time 2021/3/25 15:33
 @author passion.wangd
 @title
-@file run.py
+@file resource.py
 @IDE PyCharm
 -----------------------------------------------
 """
-from app import app,api
+from flask_restful import Api
 
-
-if __name__ == '__main__':
-    app.run(host='127.0.0.1',debug=True)
