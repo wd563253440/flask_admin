@@ -1,12 +1,5 @@
-aniso8601==9.0.1
-click==7.1.2
-Flask==1.1.2
-Flask-RESTful==0.3.8
-itsdangerous==1.1.0
-Jinja2==2.11.3
-MarkupSafe==1.1.1
-pytz==2021.1
+Flask==1.1.1
+Flask_SQLAlchemy==2.1
+Flask_RESTful==0.3.8
+Flask_Docs==0.2.3
 PyYAML==5.4.1
-six==1.15.0
-Werkzeug==1.0.1
-Flask-Ext=0.1
