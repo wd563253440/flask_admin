@@ -16,6 +16,9 @@ import subprocess
 from flask import Flask
 
 from app.resource import api
+from app.models.db import db
+import app.models.config as config
+from flask_docs import ApiDoc
 
 
 def create_app(config_name=None, config_path=None):
@@ -23,7 +26,11 @@ def create_app(config_name=None, config_path=None):
                 template_folder=subprocess.os.path.join(subprocess.os.getcwd(), '\\template\\'),
                 static_folder=subprocess.os.path.join(subprocess.os.getcwd(), '\\static\\'),
                 )
+    app.config.from_object(config)
+    app.config['RESTFUL_API_DOC_EXCLUDE'] = []
+    db.init_app(app,)
     api.init_app(app)
+    ApiDoc(app, title='接口文档', version='1.0.0')
     # 读取配置文件
     if not config_path:
         config_path = subprocess.os.path.join(subprocess.os.getcwd(), 'config\\config.yaml')

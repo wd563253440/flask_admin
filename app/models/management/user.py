@@ -11,13 +11,17 @@
 """
 from app.models.db import db
 
-class UserModel(db.model):
+class UserModel(db.Model):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80))
-    password = db.Column(db.String(80))
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+    state = db.Column(db.String(1))
+    name = db.Column(db.String(255))
+    head_img_url = db.Column(db.String(255))
+    mobile = db.Column(db.String(11))
+    salt = db.Column(db.String(64))
+    password = db.Column(db.Date)
+    created = db.Column(db.String(64))
+    edited = db.Column(db.Date)
+    editor = db.Column(db.String(64))
+    deleted = db.Column(db.String(1))
