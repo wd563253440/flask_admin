@@ -14,9 +14,10 @@ from flask import Response
 import json
 from app.models.management.user import UserModel
 
+
 class User(Resource):
 
-    def __init__(self, state, name,head_img_url,mobile,salt,password,created,edited,deleted):
+    def __init__(self, state, name, head_img_url, mobile, salt, password, created, edited, deleted):
         pass
 
     def __repr__(self):

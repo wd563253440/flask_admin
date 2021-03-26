@@ -10,6 +10,7 @@
 -----------------------------------------------
 """
 from flask_restful import Api
+from flask import views
 from app.api.management.user import User, Users
 from app.api.management.role import Role, Roles
 api = Api()
